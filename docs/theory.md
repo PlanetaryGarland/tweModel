@@ -92,7 +92,7 @@ where *&Omega;* is the planet's rotation rate and *&phi;* is the latitude. The d
 
 where *u<sub>n<sub>* and *p<sub>n<sub>* are the current wind and pressure, *u<sub>n-1<sub>* and *p<sub>n-1<sub>* are the previous, vertically-displaced wind and pressure, *t<sub>y<sub>* is the current latitude's temperature, *t<sub>y-1<sub>* is the previous latitude's temperature, and *x* is a tuning parameter that determines how fast the third "equatorial" term grows. The third term serves to "turn off" the contribution from *f* near the equator to prevent *u* blowing up to infinity as *f* approaches zero. *dy* is the "northwards distance", or the north/south distance between the latitudes that *t<sub>y<sub>* and *t<sub>y-1<sub>* are measured at. It is given by
 
-**(13)** ![Northward distance eq.](equations13NWDist.png)
+**(13)** ![Northward distance eq.](equations/13NWDist.png)
 
 where *&phi;<sub>1<sub>*, *&phi;<sub>2<sub>*, and *&phi;<sub>mid<sub>* are the first, second, and midpoint latitudes, respectively. 
 
