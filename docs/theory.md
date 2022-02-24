@@ -24,7 +24,7 @@ In a similar manner to the temperatures, input winds are interpolated to our gri
 
 As planets are oblate spheroids rather than perfect spheres, we need to account for both the radius and local gravity at each latitude. We calculate the ellipsoidal radius with the equation
 
-**(1)** ![Ellipsoidal Radius eq.](equations/1rEllipsoid.svg)
+**(1)** ![Ellipsoidal Radius eq.](equations/1rEllipsoid.png)
 
 where *r* is the ellipsoidal radius at latitude *&phi;*, *r<sub>e</sub>* is the equatorial radius of the planet, and *f* is the flattening defined by
 
