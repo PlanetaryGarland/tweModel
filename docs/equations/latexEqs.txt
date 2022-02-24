@@ -1,0 +1,25 @@
+1 r = \left(\frac{r_{e}^{2}}{1+\left(\frac{1}{\left(1-f\right)^{2}}-1\right) \sin^{2}\phi } \right )^{\frac{1}{2}}
+
+2 f = \frac{r_{e}-r_{p}}{r_{e}}
+
+3 U(r,\phi) = \frac{GM}{r}\left(1-\sum_{n=1}^{\infty}\left(\frac{R}{r}\right)^{2n}J_{2n}P_{2n}[\sin\phi]\right)+\frac{1}{2}\omega^{2}r^{2}\cos^{2}\phi
+
+4 g_{r}(r,\phi) = -\frac{\partial U}{\partial  r} 
+
+5 g_{r}(r,\phi) = \frac{GM}{r^{2}}\left(1-\frac{9}{2}\left(\frac{R}{r}\right)^{2}J_{2}\sin^{2}\phi+\frac{3}{2}\left(\frac{R}{r}\right)^{2}J_{2}\right)-\omega^{2}r\cos^{2}\phi
+
+6 N=\sqrt{\frac{g}{\theta}\frac{d\theta}{dz}}
+
+7 t_{n} = \frac{t_{n-1}\left(\frac{\kappa g^{2}}{RN^{2}}\right)\left(\frac{p_{n}}{p_{n-1}}\right)^{\kappa}}{\frac{\kappa g^{2}}{RN^{2}}+\left(t_{n-1}\left[\frac{p_{n}}{p_{n-1}}\right]^{\kappa}\right)-t_{n-1}}
+
+8 y = \frac{1+\tanh\left(\frac{x-i}{t}\right)}{2}
+
+9 \rho = \frac{p}{RT}
+
+10 \left(\frac{\partial T_{v}}{\partial y} \right)_{p} = \frac{pfm_{d}}{k}\left(\frac{\partial u}{\partial p}  \right)_{y}
+
+11 f = 2\Omega\sin\phi
+
+12 u_{n} = u_{n-1}+\left(\frac{-R\left[p_{n-1}-p_{n}\right]}{fp_{n}}\right)\left(\frac{t_{y-1}-t_{y}}{dy}\right)\left(\frac{\arctan\left[x\phi \right]}{\frac{\pi }{2}}\right)
+
+13 dy = \left(\phi_{1}-\phi_{2}\right)\left(\frac{r_{e}\cos^{-1}\phi_{mid}}{\sqrt{1+\left[\frac{r_{p}}{r_{e}}\right]^{2}\tan^{2}\phi_{mid}}}\right)\left(\sin^{2}\phi_{mid}+\left[\frac{r_{e}}{r_{p}}\right]^{2}\cos^{2}\phi_{mid}\right)^{-1}
