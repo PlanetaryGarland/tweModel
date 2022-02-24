@@ -1,6 +1,10 @@
 # tweModel.py
 
-:ringed_planet: tweModel.py is a package used to create models of giant planet atmospheres by extrapolating cloud-top temperature and wind measurements to the deep troposphere using the geostrophic-balance form of the thermal wind equation. :ringed_planet:
+:ringed_planet: 
+
+tweModel.py is a package used to create models of giant planet atmospheres by extrapolating cloud-top temperature and wind measurements to the deep troposphere using the geostrophic-balance form of the thermal wind equation. 
+
+:ringed_planet:
 
 ### Dependancies
 - python 3.8 (should work on older versions)
