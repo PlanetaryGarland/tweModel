@@ -1,0 +1,16 @@
+# Don't track compiled .pyc files.
+__pycache__/
+
+# Don't track user data.
+data/
+
+# Don't track user results.
+results/
+
+# Don't track example runs, just the expected outputs.
+examples/jupiterExample/results/*
+!examples/jupiterExample/results/exampleResults
+
+# Don't track altered config files
+config.ini
+validationConfig.ini
