@@ -71,7 +71,7 @@ def geoTW(p, pPrev, t, tPrev, lat, R, omega, dy, uPrev, eqTuning):
     '''
     Extrapolate cloud-top wind with the geostrophic thermal wind equation.
     
-    Uses the geostophic balance version of the thermal wind equation (TWE) to
+    Uses the geostrophic balance version of the thermal wind equation (TWE) to
     calculate winds at depth based on measured cloud-top wind speeds and 
     horizontal (latitudinal) temperature gradients. Includes a term to 
     "turn off" contribution from the coriolis parameter, f, to avoid division
@@ -115,7 +115,7 @@ def geoTW(p, pPrev, t, tPrev, lat, R, omega, dy, uPrev, eqTuning):
     
     Notes
     -----
-    The discretized form of the TWE implimented is:
+    The discretized form of the TWE implemented is:
     
     .. math::
         u_{n} = u_{n-1}+(\\frac{-R[p_{n-1}-p_{n}]}{fp_{n}}) \\ 
@@ -206,7 +206,7 @@ def gAtr(M, re, r, phi, J2, omega):
     phi : float
         Current latitude.
     J2 : float
-        The 2nd zonal harmonic coeffecient of the planet.
+        The 2nd zonal harmonic coefficient of the planet.
     omega : float
         The planet's rotation rate, in rad/s.
         
@@ -270,7 +270,7 @@ def tFromConstBV(t_0, p, R, cp, g, bvFreq):
     
     Notes
     -----
-    The BV equation implimented to solve for t is:
+    The BV equation implemented to solve for t is:
     
     .. math:: 
         t_{n} = \\frac{t_{n-1}(\\frac{\kappa g^{2}}{RN^{2}}) \\ 
@@ -584,7 +584,7 @@ def main(example=False, exampleName=None):
         
         
      
-    # Create an array of latitudes to invesitgate.
+    # Create an array of latitudes to investigate.
     print('Building cloud-top temperature / wind structure. \n')
     phi = np.linspace(phiStart, phiStop, phiSteps) # degrees
       
@@ -593,7 +593,7 @@ def main(example=False, exampleName=None):
     
     
     
-    # Read temperture array(s) and interpolate them to our phi values. 
+    # Read temperature array(s) and interpolate them to our phi values. 
     if tempType == 'single':
         low  = np.loadtxt(os.path.join(dataPath, lowTemps), delimiter=',')   
         t    = tempDigitize(low, phiStart, phiStop, phiSteps)
@@ -660,14 +660,14 @@ def main(example=False, exampleName=None):
     
     
     # Enter gravity loop, over all phi. This calculates g at each r in our
-    # calcuated r array.
+    # calculated r array.
     g = np.ones(phi.size)
     
     for i in np.arange(0, phi.size):
         gCalc = gAtr(M, re, r[i], phi[i], J2, omega)
         g[i]  = gCalc
     
-    # Perform a polynomial fit of g to eliminate sinusodal signal.
+    # Perform a polynomial fit of g to eliminate sinusoidal signal.
     g = np.polyval(np.polyfit(phi, g, 6), phi)
     
     
@@ -721,7 +721,7 @@ def main(example=False, exampleName=None):
         uCalc    = np.zeros(p.size) 
         uCalc[0] = windProfile[i]
     
-        # For each pressure, calculate the vertical wind sheer and store the 
+        # For each pressure, calculate the vertical wind shear and store the 
         # current pressure's thermal-wind extrapolated wind speed.
         for j in np.arange(1, p.size):
             uCalc[j] = geoTW(p[j], p[j-1], finalT[j,i], finalT[j,i-1], 
@@ -761,7 +761,7 @@ def main(example=False, exampleName=None):
     
     
     
-    # Plotting snippits!
+    # Plotting snippets!
     if plot2DTemps or plot2DDensity or plot2DWind or plotWindProfiles:
         print('Plotting... \n')
     

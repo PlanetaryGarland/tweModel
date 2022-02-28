@@ -27,7 +27,7 @@ def checkRun(examplePath, runPath, planet, parameter):
     Returns
     -------
     int
-        Value indicating success (0), values withing rounding error (1) or
+        Value indicating success (0), values within rounding error (1) or
         failure (2).
     
     Notes

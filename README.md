@@ -6,7 +6,8 @@ tweModel.py is a package used to create models of giant planet atmospheres by ex
 
 :ringed_planet:
 
-### Dependancies
+### Dependencies
+
 - python 3.8 (should work on older versions)
 - numpy
 - scipy (.signal)
@@ -24,7 +25,7 @@ If you see INSTALL SUCCESSFUL, everything is working properly. Example .csv outp
 
 ### How to Generate a New Model
 
-1.) Place your input cloud-top zonal wind profile and temperatures in the [data/](data/) directory under a \<planet>/ directory. For example, for a Jupiter model you would have two .csv files in the directory data/jupiter/. Both .csv files should be in a two column format: the 1st column containing the latitude in degrees and the 2nd the wind/temperature value at that latitude. 
+1.) Place your input cloud-top zonal wind profile and temperatures in the [data/](data/) directory under a \<planet>/ directory. For example, for a Jupiter model you would have two .csv files in the directory data/jupiter/. Both .csv files should be in a two-column format: the 1st column containing the latitude in degrees and the 2nd the wind/temperature value at that latitude. 
 
 2.) Create a configuration file named config.ini in the same directory as [tweModel.py](tweModel.py). A blank template ([configTemplate.ini](examples/configTemplate.ini)) and defaults containing some physical parameters of the 4 outer planets may be found in the [examples/](examples/) directory. Each user input is described in the template config.ini. This file will be copied and saved with your outputs.
 

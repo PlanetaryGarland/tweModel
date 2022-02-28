@@ -1,6 +1,6 @@
 # tweModel.py Methods Document
 
-This document details each step of the atmosphere modelling routine. It goes through [tweModel.py](../tweModel.py) and explains the physics and equations behind each calculation step.
+This document details each step of the atmosphere modeling routine. It goes through [tweModel.py](../tweModel.py) and explains the physics and equations behind each calculation step.
 
 ### Creating a Latitude Array
 
@@ -8,7 +8,7 @@ The latitudes at which the model is evaluated are generated using [`np.linspace(
 
 ### Creating a Pressure Array
 
-The pressures at which the model is evaluated are geneated using [`np.geomspace()`](https://numpy.org/doc/stable/reference/generated/numpy.geomspace.html). The 1D array runs from p_0 to pFinal with pSteps samples, including the endpoints. Each of these parameters are supplied by the user in [config.ini](../config.ini). The pressure array is logaritmic; there are more pressure levels near the top of the atmosphere, where we have better knowledge and we're most interested in, than the bottom. 
+The pressures at which the model is evaluated are generated using [`np.geomspace()`](https://numpy.org/doc/stable/reference/generated/numpy.geomspace.html). The 1D array runs from p_0 to pFinal with pSteps samples, including the endpoints. Each of these parameters are supplied by the user in [config.ini](../config.ini). The pressure array is logarithmic; there are more pressure levels near the top of the atmosphere, where we have better knowledge and we're most interested in, than the bottom. 
 
 ### Interpolate Input Temperatures to Model Latitudes
 
@@ -34,21 +34,21 @@ where *r<sub>p</sub>* is the polar radius of the planet.
 
 ### Calculate the Local Gravity at Each Radius
 
-We then use the calculated radii to find the local gravity at each latitude in the model. To do this, we use the shape of a rotating planet in hydrostatic equillibrium. The equation for a level of equal effective potential *U* is:
+We then use the calculated radii to find the local gravity at each latitude in the model. To do this, we use the shape of a rotating planet in hydrostatic equilibrium. The equation for a level of equal effective potential *U* is:
 
 **(3)** ![Potential eq.](equations/3GravPotential.png)
 
-where *G* is the universal gravitational constant, *M* is the planet's mass, *r* is the ellipsoidal radius at latitude *&phi;* calculated with Eq. 2, *R* is the radius at which the zonal harmonic coeffecients *J<sub>2n<sub>* have been normalized (usually *e<sub>e<sub>*), *P<sub>2n<sub>* are the even Legendre polynomials, and *&omega;* is the angular velocity of the planet. Since:
+where *G* is the universal gravitational constant, *M* is the planet's mass, *r* is the ellipsoidal radius at latitude *&phi;* calculated with Eq. 2, *R* is the radius at which the zonal harmonic coefficients *J<sub>2n<sub>* have been normalized (usually *e<sub>e<sub>*), *P<sub>2n<sub>* are the even Legendre polynomials, and *&omega;* is the angular velocity of the planet. Since:
 
 **(4)** ![Gravity from potential eq.](equations/4GravFromPot.png)
 
-we can take the partial derivitive of Eq. 3 with respect to *r* to get an equation form local gravity at each point in our model. Using only the first order term, this results in:
+we can take the partial derivative of Eq. 3 with respect to *r* to get an equation for local gravity at each point in our model. Using only the first order term, this results in:
 
 **(5)** ![Gravity as a function of r eq.](equations/5GravFuncR.png)
 
 The resulting gravity array is then fit with a polynomial using [`np.polyfit()`](https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html) to remove oscillations caused by the first-order approximation.
 
-### Propogate Cloud-Top Temperatures down by Assuming a Constant Brunt-Väisälä Frequency
+### Propagate Cloud-Top Temperatures down by Assuming a Constant Brunt-Väisälä Frequency
 
 The Brunt-Väisälä frequency, *N*, is one measure of a fluid's static stability. It is the frequency at which a vertically displaced parcel will oscillate and must be real in a stable atmosphere. It is given by the equation
 
@@ -76,17 +76,17 @@ We calculate density at each point in the model using our temperature grid using
 
 where *&rho;* is the density and *R* is the specific gas constant of the atmosphere.
 
-### Propogate Cloud-Top Zonal Winds with the Geostrophic Thermal Wind Equation
+### Propagate Cloud-Top Zonal Winds with the Geostrophic Thermal Wind Equation
 
 The geostrophic form of the thermal wind equation (TWE) relates the geostrophic balance between the Coriolis and pressure-gradient forces in the horizontal to hydrostatic balance in the vertical. It shows the vertical wind shear that arises from a given horizontal temperature gradient. The "textbook" form of the TWE from Holton 1992[^1] is:
 
 **(10)** ![Holton TWE eq.](equations/10HoltonTWE.png)
 
-where *T<sub>v<sub>* is virtual temperature, *y* is the "northward distance" between two latitudes,  *p* is pressure, *m<sub>d<sub>* is the mass per molecule of dry air, *k* is the Boltzmann constant, *u* is the zonal wind, and *f* is the Coriolis parameter:
+where *T<sub>v<sub>* is virtual temperature, *y* is the "northward distance" between two latitudes, *p* is pressure, *m<sub>d<sub>* is the mass per molecule of dry air, *k* is the Boltzmann constant, *u* is the zonal wind, and *f* is the Coriolis parameter:
 
 **(11)** ![Coriolis eq.](equations/11Coriolis.png)
 
-where *&Omega;* is the planet's rotation rate and *&phi;* is the latitude. The discretized form implimented in [tweModel.py](../tweModel.py) is given by
+where *&Omega;* is the planet's rotation rate and *&phi;* is the latitude. The discretized form implemented in [tweModel.py](../tweModel.py) is given by
 
 **(12)** ![Code TWE eq.](equations/12CodeTWE.png)
 
@@ -96,15 +96,17 @@ where *u<sub>n<sub>* and *p<sub>n<sub>* are the current wind and pressure, *u<su
 
 where *&phi;<sub>1<sub>*, *&phi;<sub>2<sub>*, and *&phi;<sub>mid<sub>* are the first, second, and midpoint latitudes, respectively. 
 
-Finally, the code applies an optional Savitzky-Golay filter to the zonal wind profile at each pressure level to reduce noise in the wind output. We utilze the [scipy](https://scipy.org/) implementation [`scipy.signal.savgol_filter()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.savgol_filter.html).
+Finally, the code applies an optional Savitzky-Golay filter to the zonal wind profile at each pressure level to reduce noise in the wind output. We utilize the [scipy](https://scipy.org/) implementation [`scipy.signal.savgol_filter()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.savgol_filter.html).
 
 ### Future Improvements
 
-- Include an option to propogate cloud-top tempertures along a moist adiabat instead of assuming a constant BV frequency. This would require user-supplied abundances.
+- Error propagation from input temperatures / winds.
+- Include an option to propagate cloud-top temperatures along a moist adiabat instead of assuming a constant BV frequency. This would require user-supplied abundances.
 - Use a derivation of the TWE which addresses the equatorial region without un-physically "turning off" the contribution from *f*. Candidates include:
     - Using a cyclostrophic-balance form of the TWE near the equator.
     - Using the equatorial TWE derived in Marcus et al. 2019[^2].
 - Improved model validation against observations at multiple altitudes (different wavelengths / probes).
+- Automated minimization of the assumed BV and tuning parameters.
 
 ### Author
 Justin Garland
