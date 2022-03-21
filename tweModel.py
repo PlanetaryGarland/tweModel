@@ -223,9 +223,14 @@ def gAtr(M, re, r, phi, J2, omega):
     -------
     2/18/2022, planetary@garland.run : v1.0
         Initial published version. 
+    3/15/2022, planetary@garland.run : v1.1
+        Bug fix, degrees to radians.
     '''  
     # Define universal gravitational constant. 
     G = 6.674e-11 # m^3 kg^-1 s^-2
+    
+    # Convert degrees to radians.
+    phi = np.pi * (phi / 180.0)
     
     # A fairly long equation here. Break up into terms for ease of calculation.
     term1 = ((G * M) / (r**2))  
